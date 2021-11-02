@@ -19,4 +19,8 @@ gapminder %>%
   mutate(TotalGDP=pop*gdpPercap) %>%
   arrange(TotalGDP)
 
+#sort descending order
+gapminder %>%
+  mutate(TotalGDP=pop*gdpPercap) %>%
+  arrange(desc(TotalGDP))
 
