@@ -22,7 +22,7 @@ pheatmap(df,
 
 #
 pheatmap(mtcars)
-
+pheatmap(mtcars, scale="column")
 
 if(FALSE){
   "We use scaling when the difference between 
@@ -34,3 +34,7 @@ if(FALSE){
 }
 
   
+#Exercise
+pheatmap(df, 
+         color="red", 
+         main="This is my First heatmap")
