@@ -1,0 +1,21 @@
+
+--------------------  Free online Books Link  ---------
+ALL BOOKS: https://www.rstudio.com/resources/books/
+1)  R for beginers: https://cran.r-project.org/doc/contrib/Paradis-rdebuts_en.pdf
+2)  R for Data Science: https://r4ds.had.co.nz/index.html
+
+
+
+--------------------  Web Resources  ---------
+Statistical tools for high-throughput data analysis: http://www.sthda.com/english/
+
+
+
+
+--------------------  Cheatsheets  -----------------
+1)  Data Wrangling with dplyr and tidyr:
+		https://www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf
+2)  R Markdown:
+		https://www.rstudio.com/wp-content/uploads/2015/02/rmarkdown-cheatsheet.pdf 
+3)  Rstudio cheatsheet collection:
+		https://www.rstudio.com/resources/cheatsheets/
