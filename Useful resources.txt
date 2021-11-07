@@ -19,3 +19,8 @@ Statistical tools for high-throughput data analysis: http://www.sthda.com/englis
 		https://www.rstudio.com/wp-content/uploads/2015/02/rmarkdown-cheatsheet.pdf 
 3)  Rstudio cheatsheet collection:
 		https://www.rstudio.com/resources/cheatsheets/
+
+
+----------------  Tutorials ----------------
+https://www.youtube.com/watch?v=_V8eKsto3Ug&t=2157s
+https://www.youtube.com/watch?v=SWxoJqTqo08&list=PLjgj6kdf_snYBkIsWQYcYtUZiDpam7ygg
