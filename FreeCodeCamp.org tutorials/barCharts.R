@@ -17,3 +17,4 @@ plot(cylinders)     # Default X-Y plot (lines)
 
 
 # Clear environment
+rm(list = ls())
