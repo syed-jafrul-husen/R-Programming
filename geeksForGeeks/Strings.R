@@ -107,4 +107,158 @@ print(result)
 
 
 
-# Method 2: Using Tidyverse module
+# Method 2: Using Tidyverse module #############
+
+# Detect the string
+string <- c("WelcometoGeeksforgeeks!")
+library(tidyverse)
+str_detect(string, "geeks")
+
+# Locate the string
+str_locate(string, "geeks")
+
+# Extract the string
+str_extract(string, "for")
+
+# Replace the string
+str_replace(string, "toGeeksforgeeks", "geeks")
+
+
+
+# Using regex and external module
+
+# Select the character using dot(.)
+str_extract_all(string, "G..k")
+
+# \\D is used to select any character and number in regex
+str_extract_all(string, "W\\D\\Dcome")
+
+# Using grep()
+# grep() function returns the index at which the pattern 
+# is found in the vector
+str <- c("Hello", "hello", "hi", "hey")
+grep('hey', str)
+# To find all instances of specific words in the string irrespective of case
+grep('he', str, ignore.case="True")
+
+
+
+
+
+
+
+# String Manipulation in R ##################################
+
+# Concatenation
+str <- paste("Learn", "Code")
+print(str)
+# In case no separator is specified the default separator 
+# " " is inserted between individual strings.
+str <- paste(c(1:3), "4", sep=":")
+print(str)
+
+str <- paste(c(1:4), c(5:8), sep="--")
+print(str)
+
+str <- cat("learn", "code", "tech", sep = ":")
+print(str)
+
+# R program to calculate length
+print(length(c("Learn to", "Code")))
+print(nchar(c("Learn", "code")))
+
+#Case conversion
+print(toupper(c("Learn Code", "hI")))
+print(tolower(c("Learn Code", "hI")))
+print(casefold(c("Learn Code", "hI")))
+# By default, the strings get converted to lower case.
+print(casefold(c("Learn Code", "hI"), upper=TRUE))
+
+# Character replacement
+chartr("a", "A", "An honest man gave that")
+chartr("is", "@#", c("This is it", "It is great"))
+chartr("is", "@q#", c("This is it", "It is great"))
+#Error
+chartr("ate", "#@", "I hate ate") 
+
+# Substring
+substr("Learn Code Tech", 1, 4)
+
+str <- c("program", "with", "new", "language") 
+substring(str, 3, 3) <- "%"
+print(str)
+
+
+
+# Concatenate ##################
+string1 <- "Geeks"
+string2 <- "Geeks"
+answer <- paste(string1, string2, sep=" For ") 
+print(answer)
+
+
+string1 <- "I Love"
+string2 <- "R programming"
+answer <- paste(string1, string2, sep=" ") 
+print(answer) 
+
+
+# String matching
+# grep() function: It returns the index at which the 
+# pattern is found in the vector
+str <- c("Hello", "hello", "hi", "hey") 
+grep('he', str) 
+
+str <- c("Hello", "hello", "hi", "hey") 
+grep('he', str, ignore.case ="True") 
+
+str <- c("Hello", "hello", "hi", "hey") 
+grepl('the', str) 
+
+
+#regexpr() function: It searches for occurrences of a pattern 
+#in every element of the string, If not found, -1 is returned
+str <- c("Hello", "hello", "hi", "ahey")
+regexpr('he', str)
+
+# To find whether any instance(s) of words starting with a 
+# vowel is present in each string of the vector.
+str <- c("abre", "Ult", "ste", "srU")
+regexpr('^[aeiouAEIOU]', str)
+
+# To find whether each string is of the pattern 
+# '10+1' of the vector
+str <- c("1001", "11", "10012", "101", "10001", "1011") 
+regexpr('10+1$', str)
+
+
+# Adding element in R programming append()
+x <- rep(1:5)
+y <- append(x, 10)
+print(y)
+
+x <- rep(10:15)
+y <- append(x, 6, 1)
+print(y)
+
+
+# Spliting string
+s <- "Geeks For Geeks"
+ans <- strsplit(s, " ")
+print(ans)
+
+s <- "Geeks9For2Geeks"
+ans <- strsplit(s, "[0-9]+")
+print(ans)
+
+# Split the date using strsplit
+string_date <- c("2-07-2020","5-07-2020","6-07-2020",
+               "7-07-2020","8-07-2020")
+result <- strsplit(string_date,split = "-")
+print(result)
+
+# Printing
+x1 <- "GeeksforGeeks"
+x2 <- 100
+x3 <- "success"
+sprintf("% s gives %.0f percent % s", x1, x2, x3) 
