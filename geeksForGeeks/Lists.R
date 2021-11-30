@@ -171,3 +171,78 @@ print(x)
 a <- list(1:3)
 print(a)
 is.list(a)
+
+
+# Check if the object is a list or not
+a <- list(1, 2, 3)
+b <- list(c("Jan", "Feb", "Mar"))
+c <- list(matrix(c(1, 2, 3, 4, 5)))
+d <- list(list("green", 12.3))
+
+is.list(a)
+is.list(b)
+print(c)
+is.list(c)
+is.list(d)
+
+# "Biochemical Oxygen Data (BOD)" initializing a data frame
+x <- BOD
+
+# Each row of the data frame is a list
+a <- x[2, ]
+is.list(a)
+
+# Each column of the data frame is a list
+b <- x[, 1]
+is.list(b)
+
+
+
+# Convert an object to list
+x <- c(1, 2, 3, 4, 5)
+as.list(x)
+
+# Converting data frame to list
+BOD
+as.list(BOD)
+
+# Converting matrix to a list
+a = matrix(
+  c(1, 2, 3, 4, 5, 6, 7, 8, 9),
+  nrow = 3,
+  ncol = 3,
+  byrow = TRUE
+)
+rownames(a) = c("a", "b", "c")
+colnames(a) = c("c", "d", "e")
+print(a)
+lst = as.list(a)
+print(lst)
+
+
+
+# Check if an object of the specified name is defined 
+# or not in R programming
+exists("cos")
+exists("diff")
+exists("Hello")
+
+Hello <- c(1, 2, 3, 4, 5)
+exists("Hello")
+
+
+# Check if variable in data frame is defined
+friend.data <- data.frame(
+  friend_id = c(1:5),
+  friend_name = c("Sachin", "Sourav",
+                  "Dravid", "Sehwag",
+                  "Dhoni"),
+  stringsAsFactors = FALSE
+)
+exists('friend_id')
+
+print(friend.data)
+attach(friend.data)
+exists('friend_id')
+
+
