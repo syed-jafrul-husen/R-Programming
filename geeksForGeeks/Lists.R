@@ -246,3 +246,16 @@ attach(friend.data)
 exists('friend_id')
 
 
+# lapply() function in R language is used to apply a function
+# over a list of elements
+A = matrix(1:9, 3, 3)
+B = matrix(10:18, 3, 3)
+mylist = list(A, B)
+
+print(det)
+determinant = lapply(mylist, det)
+print(determinant)
+
+print(mylist)
+sum = lapply(mylist, sum)
+print(sum)
