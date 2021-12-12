@@ -242,3 +242,7 @@ display(x)
 
 
 # Inheritance ###########################################
+# Inheritance is one of the concept in OOP by which new classes can be derived from existing or base
+# classes helping in re-usability of code.
+
+# Inheritance in S3 class
