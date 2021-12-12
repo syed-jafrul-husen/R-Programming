@@ -241,8 +241,84 @@ display(x)
 
 
 
+
 # Inheritance ###########################################
 # Inheritance is one of the concept in OOP by which new classes can be derived from existing or base
 # classes helping in re-usability of code.
 
 # Inheritance in S3 class
+student <- function(n, a, r){
+  value <- list(name=n, age=a, rno=r)
+  attr(value, "class") <- student
+  value
+}
+print.student <- function(obj){
+  cat(obj$name, "\n")
+  cat(obj$age, "\n")
+  cat(obj$rno, "\n")
+}
+s <- list(name="Kalam", age=21, rno=4, country="Bangladesh")
+class(s) <- c("InternationalStudent", "student")
+cat("The method print.student() is inherited:\n")
+print(s)
+
+# overwriting the print method
+print.InternationalStudent <- function(obj){
+  cat(obj$name, "is from", obj$country, "\n")
+}
+print(s)
+
+#check inheritance
+inherits(s, "student")
+
+
+# Inheritance in S4 class
+setClass("student", slots=list(
+  name="character", age="numeric", rno="numeric"
+))
+setMethod("show", "student",
+          function(obj){
+            cat(obj@name, "\n")
+            cat(obj@age, "\n")
+            cat(obj@rno, "\n")
+          })
+#inherit from student
+setClass("InternationalStudent", slots=list(country="character"), contains="student")
+
+s <- new("InternationalStudent", name="Kalam", age=21, rno=96, country="Bangladesh")
+show(s)
+
+
+# Inheritance in Reference class
+# Define class 
+student <- setRefClass("student",        
+                       fields = list(name = "character", 
+                                     age = "numeric", rno = "numeric"), 
+                       methods = list( 
+                         inc_age <- function(x) { 
+                           age <<- age + x 
+                         }, 
+                         dec_age <- function(x) { 
+                           age <<- age - x 
+                         } 
+                       ) 
+) 
+# Inheriting from Reference class 
+InternStudent <- setRefClass("InternStudent",  
+                             fields = list(country = "character"),  
+                             contains = "student", 
+                             methods = list( 
+                               dec_age <- function(x) { 
+                                 if((age - x) < 0)  stop("Age cannot be negative") 
+                                 age <<- age - x 
+                               } 
+                             )  
+) 
+# Create object 
+s <- InternStudent(name = "Utkarsh", 
+                   age = 21, rno = 96, country = "India") 
+s$dec_age(5) 
+s$age 
+
+s$dec_age(20)  
+s$age 
