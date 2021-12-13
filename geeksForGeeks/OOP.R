@@ -534,3 +534,83 @@ as.logical(x)
 as.list(x) 
 # Converting it to complex numbers 
 as.complex(x) 
+
+
+
+
+# R6 classes
+# In OOP of R language, encapsulation means binding of the data and methods inside a class. 
+# dplyr and shiny package use R6 classes
+library(R6)
+
+Queue <- R6Class("Queue",
+                 
+                 # public member of the class that can be accessed by object
+                 public = list(
+                   
+                   # Constructor/ Initializer
+                   initialize = function(...)
+                   {
+                     private$elements = list()
+                   },
+                   
+                   # Add to the queue
+                   enqueue = function(num)
+                   {
+                     private$elements = append(private$elements, num)
+                   },
+                   
+                   # Remove from queue
+                   dequeue = function()
+                   {
+                     if(self$size()==0)
+                       stop("Queue is empty")
+                     element <- private$elements[[1]]
+                     private$elements <- private$elements[-1]
+                     element
+                   },
+                   
+                   # Get the size of elements
+                   size = function()
+                   {
+                     length(private$elements)
+                   }),
+                 
+                 private = list(
+                   # queue list
+                   elements = list()
+                  )
+                 )
+# Create an object
+QueueObject = Queue$new()
+QueueObject$enqueue(2)
+QueueObject$enqueue(5)
+QueueObject$dequeue()
+QueueObject$dequeue()
+
+
+# The following example is a demonstration of Inheritance in R6 classes by creating another class 
+# childQueue that inherits the class Queue.
+childQueue <- R6Class("childQueue",
+                      # inherit queue class which is super class
+                      inherit = Queue,
+                      
+                      public = list(
+                        initialize = function(...)
+                        {
+                          private$elements <- list(...)
+                        },
+                        size = function()
+                        {
+                          # super is used to access methods from super class
+                          super$size()
+                        }
+                      )
+                      )
+childQueueObject <- childQueue$new()
+childQueueObject$enqueue(2)
+childQueueObject$enqueue(3)
+childQueueObject$dequeue()
+childQueueObject$dequeue()
+childQueueObject$dequeue()
+
