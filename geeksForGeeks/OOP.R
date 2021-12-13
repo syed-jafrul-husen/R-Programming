@@ -322,3 +322,103 @@ s$age
 
 s$dec_age(20)  
 s$age 
+
+
+
+
+# Abstraction #############################
+add_2 <- function(y){2+y}
+add_2(1:10)
+
+add_x <- function(x){
+  function(y){ x+y }
+}
+add_2 <- add_x(2)
+add_7 <- add_x(7)
+
+for (i in 1:nboot){
+  bootmeans[i] <- mean(sample(data, length(data), replace=TRUE))
+}
+
+make_container <- function(n){
+  x <- numeric(n)
+  i <- 1
+  function(value=NULL){
+    if(is.null(value)){
+      return(x)
+    }
+    else{
+      x[i] <<- value
+      i <<- i+1
+    }
+  }
+}
+bootmeans <- make_container(nboot)
+for(i in 1:nboot){
+  bootmeans(mean(sample(data, length(data), replace=TRUE)))
+}
+
+
+
+# Looping over objects #################################
+# One of the biggest issues with the "for" loop is its memeory consumption and its slowness in executing
+# repetative task. And when its come to dealing with large data set and iterative over it, for loop 
+# is not advised. R provides many alternatives to be applied to vectors for lopping operation that are
+# pretty useful when working interactively on a command line. In this article we deal with apply()
+# function and its vatiation: apply(), lapply(), sapply(), tapply(), mapply()
+
+# apply():   Applies a function over the margins of an array or matrix
+# lapply():  Apply a function over a list or vector 
+# sapply():  Same as lapply() but with spacified result
+# tapply():  Apply a function over a ragged array
+# mapply():  Multivariate version of lapply()
+
+# apply()
+A = matrix(1:9, 3, 3)
+print(A)
+# Applying apply() over a row of matrix. Here margin 1 is for row
+r = apply(A, 1, sum)
+print(r)
+# Applying apply() over a column of matrix. Here 2 is for column
+c = apply(A, 2, sum)
+print(c)
+
+# lapply():
+  # This function is used to apply a function over a list. It always return a list of the same length as
+  # the input list
+A = matrix(1:9, 3, 3)
+B = matrix(10:18, 3, 3)
+myList = list(A, B)
+determinant = lapply(myList, det)
+print(determinant)
+
+# sapply()
+# sapply(): This function is used to simplify the result of lapply(), if possible. Unlike lapply(), 
+# the result is not always a list. The output varies in the following ways:-
+  # If output is a list containing elements having length 1, then a vector is returned.
+  # If output is a list where all the elements are vectors of same length(>1), then a matrix is returned.
+  # If output contains elements which cannot be simplified or elements of different types, a list 
+  # is returned.
+A = list(a=1:5, b=6:10)
+means = sapply(A, mean)
+print(means)
+
+# tapply():
+  # This function is used to apply a function over a subset of vectors given by a combination of factors.
+Id = c(1, 1, 1, 1, 2, 2, 2, 3, 3)
+val = c(1, 2, 3, 4, 5, 6, 7, 8, 9)
+result = tapply(val, Id, sum)
+print(result)
+
+# mapply():
+  # It's a multivariate version of lapply(). This function can be used over several list simultaneously.
+A = list(c(1, 2, 3, 4))
+B = list(c(2, 5, 1, 6))
+result = mapply(sum, A, B)
+print(result)
+
+
+
+
+
+# Creating
