@@ -614,3 +614,36 @@ childQueueObject$dequeue()
 childQueueObject$dequeue()
 childQueueObject$dequeue()
 
+
+
+
+# Getting attribute of Objects
+# attribute() function in R is used to get all attributes of data. 
+# This function is also used to set new attribute of data
+
+info = data.frame(iris)
+# Load info set that you want to work on
+data(info) 
+# Print first 6 rows of info set data                                            
+head(info)                                                
+# Apply attributes function
+attributes(info) 
+
+
+# Set different column names
+# retain dataframe class
+attributes_list <- list(names = c('Sepal.Length' ,'Sepal.Width' ,
+                                  'Petal.Length', 'Petal.Width',
+                                  'Species'),
+                        class = "data.frame",
+                        row.names= c("NA","NA","NA","NA"))
+
+# New attributes from list added to info database
+attributes(info) <- attributes_list
+attributes(info)
+
+
+# attr() will return specific data, but this function needs precise information about the data.
+data(info) 
+# Apply attr() function
+attr(x = info, which = "names")
