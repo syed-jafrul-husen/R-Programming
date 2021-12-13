@@ -681,3 +681,19 @@ arr = array(2:13, dim = c(2, 3, 2))
 print(arr) 
 # Using min() function 
 min(arr) 
+
+
+
+# Get the maximum element of an object ##############################
+
+x1 <- c(1, 2, 3, 4, 5, 6, 7, 8, 9) 
+x2 <- c(1, 4, 2, 8, NA, 11) 
+# Finding Maximum element 
+max(x1) 
+max(x2, na.rm = FALSE) 
+max(x2, na.rm = TRUE)
+
+arr = array(2:13, dim = c(2, 3, 2))  
+print(arr) 
+# Using max() function 
+max(arr)
