@@ -514,3 +514,23 @@ print.bank <- function(obj){
   cat(obj$withdraw, " is the withdrawn amount")
 }
 x
+
+
+
+
+# Explicit coercion in R programming #################################
+# Coercing of an object from one type of class to another is known as explicit coercion
+# Normally whatever is converted implicitly is referred to as coercion and if converted explicitly then it
+# is known as casting. Conversion signifies both types- coercion and casting
+x <- c(0, 1, 0, 3)
+class(x)
+# Converting it to integer type 
+as.numeric(x) 
+# Converting it to double type 
+as.double(x) 
+# Converting it to logical type 
+as.logical(x) 
+# Converting it to a list 
+as.list(x) 
+# Converting it to complex numbers 
+as.complex(x) 
