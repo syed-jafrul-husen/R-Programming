@@ -642,8 +642,26 @@ attributes_list <- list(names = c('Sepal.Length' ,'Sepal.Width' ,
 attributes(info) <- attributes_list
 attributes(info)
 
-
 # attr() will return specific data, but this function needs precise information about the data.
 data(info) 
 # Apply attr() function
 attr(x = info, which = "names")
+
+
+
+# Get or set names of elements of an object #############################
+
+x <- c(1, 2, 3, 4, 5) 
+# Assigning names using names() function 
+names(x) <- c("gfg1", "gfg2", "gfg3", "gfg4", "gfg5") 
+# Printing name vector that is assigned  
+names(x) 
+# Printing updated vector 
+print(x) 
+
+library(datasets)  
+# Importing dataset  
+head(airquality)  
+# Calling names() function to get names 
+names(airquality)
+
