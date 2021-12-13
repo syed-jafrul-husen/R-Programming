@@ -465,3 +465,52 @@ ls()
 # Deleting All object in memory
 rm(list=ls())
 print(ls())
+
+
+
+
+# S3 class ############################################
+x <- c("female", "male", "male", "female")
+class(x)
+# Using the command class() to append the class of the vector
+class(x) <- append(class(x), "Gender")
+class(x)
+
+age <- c(12, 10, 9)
+e <- environment()
+e
+# setting the value of a variable
+assign("age", 3, e)
+ls()
+# Getting the values of the variable
+get("age", e)
+
+
+# For creating S3 object there are two main steps:
+    # Create a list with the required components
+    # Then the class can be formed by command class(x) and a name should be assigned to this class
+x <- list(name="Jafrul", account_no=1234, saving=1500, withdraw=234)
+class(x) <- "bank"
+x
+
+# The S3 system in R language consists of three main components
+    # Generic function, method, attributes
+# The function print() is a generic function and hence is a collection of methods
+methods(print)
+
+# In the above long list there are important methods like print.factor(). When we print a factor through
+# function print(), the call would automatically dispatch to print.factor()
+# The class created as - bank, would search for a method named print.bank(), and since no such method 
+# exists print.default() is used. 
+# Generic functions have a default method which is used when no match is available
+
+# Creating own method
+x <- list(name="Jafrul", account_no=12345, saving=1200, withdraw=750)
+class(x) <- "bank"
+print.bank <- function(obj){
+  cat("Name is ", obj$name, "\n")
+  cat(obj$account_no, " is the account number of the holder\n")
+  cat(obj$saving, " is the amount of saving the account \n")
+  cat(obj$withdraw, " is the withdrawn amount")
+}
+x
