@@ -421,4 +421,47 @@ print(result)
 
 
 
-# Creating
+# Creating, Listing and Deleting, Objects in memory #########################
+
+# Listing object in memory
+# numeric object
+x = 5
+# String object
+name = "Jafrul"
+# Vector object
+vec1 = c(1, 2, 3)
+vec2 = c("a", "b", "c")
+# List object
+listOfNumber = list( 
+  "Numbers" = vec1, 
+  "Characters" = vec2 
+) 
+# Data frame object 
+myDataFrame = data.frame( 
+  "Numbers" = vec1, 
+  "Characters" = vec2 
+) 
+# Listing objects using object() 
+print(objects()) 
+# Listing objects using ls() 
+print(ls()) 
+
+
+# The code below returns all objects 
+# whose name contains an v 
+print(ls(pattern = "v")) 
+# The code below returns all objects 
+# whose name ends with "e" 
+print(ls(pattern = "e$")) 
+
+
+# Deleting object in memory
+# Deleting object x using rm() 
+rm(x) 
+# Deleting object myDataFrame using remove() 
+remove(myDataFrame) 
+ls()
+
+# Deleting All object in memory
+rm(list=ls())
+print(ls())
