@@ -185,19 +185,90 @@ server <- function(input, output) {}
 shinyApp(ui = ui, server = server)
 
 
+
+# import shiny package
+
+library(shiny)
+# define fluid page layout
+ui <- fluidPage(
+  sliderInput("obs", "Number of observations", 0, 1000, 500),
+  actionButton("goButton", "Go!", class = "btn-success"),
+  plotOutput("distPlot")
+)
+server <- function(input, output)
+{
+  output$distPlot <- renderPlot({
+    input$goButton
+    dist <- isolate(rnorm(input$obs))
+    hist(dist)
+  })
+}
+# create shiny app object using shinyApp
+shinyApp(ui, server)
+
+
+library(shiny)
+# define fluid page layout
+ui <- fluidPage(
+  checkboxGroupInput("icons", "Choose icons:",
+                     choiceNames =
+                       list(icon("dog"), icon("cat"),
+                            icon("fish"), icon("bug")),
+                     choiceValues =
+                       list("dog", "cat", "fish", "bug")),
+  textOutput("txt")
+)
+server <- function(input, output, session) 
+{
+  output$txt <- renderText({
+    icons <- paste(input$icons, collapse = ", ")
+    paste("You chose", icons)
+  })
+}
+shinyApp(ui = ui, server = server)
+
+
+# Description
+ui <- fluidPage(
+  textInput("txt", "Enter yoour text here", "Empty"),
+  verbatimTextOutput("value")
+)
+server <- function(input, output)
+{
+  output$value <- renderText({ input$text })
+}
+shinyApp(ui, server)
+
+
 library(shiny)
 ui <- fluidPage(
-  sliderInput(inputId="num",
-              label="Choose a number", 
-              value=10, min=1, max=1000),
-  plotOutput("hist")
+  textInput(inputId = "Name", label = "Enter your name"),
+  textOutput("txt")
+)
+server <- function(input, output, session) 
+{
+  output$txt <- renderText({
+    Name <- paste(input$Name, collapse = ", ")
+    paste("Welcome! to geeksforgeeks ", Name)
+  })
+}
+shinyApp(ui = ui, server = server)
+
+
+
+library(shiny)
+ui <- fluidPage(
+  sliderInput(inputId = "num", 
+              label = "Choose a number", 
+              value = 25, min = 1, max = 100),
+  wellPanel(plotOutput("hist"))
 )
 server <- function(input, output)
 {
   output$hist <- renderPlot({
-    hist(rnorm(input$num))
+    hist(rnorm(input$num), main = input$title)
   })
 }
-# Create shiny app object
-shinyApp(ui=ui, server=server)
+shinyApp(ui = ui, server = server)
+
 
