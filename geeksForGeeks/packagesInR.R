@@ -105,3 +105,99 @@ ggplot(data = mtcars, aes(x = hp, y = mpg)) +
 ggplot(data = mtcars, aes(x = hp, y = mpg)) +
   geom_point() + facet_grid(am ~ cyl) + 
   theme_gray()
+
+
+
+
+
+
+# Grid and Lattice package ##################
+
+install.packages("pkg")
+# Load the grid package
+local({pkg <- select.list(sort(.packages(all.available=TRUE)),
+            graphics=TRUE) + if(nchar(pkg)) 
+              library(pkg, character.only=TRUE)})
+
+# To see the list of all the functions in grid package,
+library(help = "grid")
+
+
+library(grid)
+# Saving output as png file
+png(file ="grid-gfg.png")
+
+# Create circle grob
+cir <- circleGrob(name = "cir", x = 0.3, y = 0.3, r = 0.2,
+                  gp = gpar(col = "black", lty = 3))
+grid.draw(cir)
+
+# Create rectangular grob
+rect <- rectGrob(name = "rect", x = 0.5, y = 0.5,
+                 width = 0.5, height = 0.3)
+grid.draw(rect)
+
+# Saving the file
+dev.off()
+
+# R lattice packages
+# The lattice package uses grid package to provide better 
+# relationships between the data. It is an add-on package 
+# for the implementation of Trellis graphics (graphics that 
+# shows relationships between variables conditioned together)
+install.packages("lattice")
+library(help = "lattice")
+
+
+library(lattice)
+attach(mtcars)
+# Output to be present as PNG file
+png("DensityPlotLatticeGFG.png")
+densityplot(~hp, main ="Density plot of HP", xlab ="HP")
+# Saving the file
+dev.off()
+
+library(ToothGrowth)
+png("HistogramLatticeGFG.png")
+histogram(~len, data = ToothGrowth,
+          main = "Histogram of Length")
+dev.off()
+
+
+
+
+# Shiny packages #############################
+#  Shiny is an R package that makes it easy to build 
+# interactive web apps straight from R. It helps to host 
+# standalone apps on a webpage or embed them in R Markdown 
+# documents or build dashboards. One can also extend Shiny apps with CSS themes, htmlwidgets, and JavaScript actions.
+install.packages("shiny")
+if (!require("remotes"))
+  install.packages("remotes")
+remotes::install_github("rstudio/shiny")
+
+library(shiny)
+# define a page with fluid layout
+ui <- fluidPage(h1("GeeksforGeeks article on shiny package in R"),
+                p(style = "font-family:Impact", "My first shiny app")
+)
+server <- function(input, output) {}
+shinyApp(ui = ui, server = server)
+
+
+library(shiny)
+ui <- fluidPage(
+  sliderInput(inputId="num",
+              label="Choose a number", 
+              value=10, min=1, max=1000),
+  plotOutput("hist")
+)
+server <- function(input, output)
+{
+  output$hist <- renderPlot({
+    hist(rnorm(input$num))
+  })
+}
+# Create shiny app object
+shinyApp(ui=ui, server=server)
+
