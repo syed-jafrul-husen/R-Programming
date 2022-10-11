@@ -272,3 +272,94 @@ server <- function(input, output)
 shinyApp(ui = ui, server = server)
 
 
+
+
+# Data Munging #################
+# Data Munging is the general technique of transforming data
+# from unusable or erroneous form to useful form
+# the procedure of cleansing the data manually is known as 
+# data munging.
+# apply(X, margin, function) 
+  # margin: a value between 1 and 2 in order to decide where 
+  # to apply the function [ 1- row; 2- column] 
+
+m <- matrix(C <- (1:10), 
+            nrow = 5,
+            ncol = 6)
+m
+a_m <- apply(m, 2, sum)
+a_m
+
+# lapply() function is used to perform operations on a list 
+# and it returns a resultant list of the same size as the 
+# input list. The 'l' in lapply() refers to lists
+movies <- c("SPIDERMAN", "BATMAN", "AVENGERS", "FROZEN")
+movies
+movies_lower <- lapply(movies, tolower)
+str(movies_lower)
+
+# The sapply() function takes any vector or object or list 
+# and performs the exact operation as the lapply() function.
+
+# The tapply() function is used to calculate or measure mean, 
+# median, maximum, and so on, or to perform a function on 
+# each and every factor of the variable. It is efficiently 
+# used to create a subset of any vector and then to apply or
+# perform any function on them.
+  # tapply(X, index, func = NULL)
+  # X: an object or vector 
+  # index: a list of factor
+  
+data(iris)
+tapply(iris$Sepal.Width, iris$Species, median)
+
+
+# aggregate() function is used to combine or aggregate the 
+# input data frame by applying a function on each column of a
+# sub-data frame
+assets <- data.frame(
+  asset.class = c("equity", "equity", "equity",
+                  "option", "option", "option",
+                  "bond", "bonnd"),
+  rating = c("AAA", "A", "A",
+             "AAA", "BB", "BB",
+             "AAA", "A"),
+  counterparty.a = c(runif(3), rnorm(5)),
+  counterparty.b = c(runif(3), rnorm(5)),
+  counterparty.c = c(runif(3), rnorm(5))
+  ) 
+assets
+
+exposure <- aggregate(
+  x = assets[c("counterparty.a", "counterparty.b",
+               "counterparty.c")],
+  by = assets[c("asset.class", "rating")],
+  FUN = function(market.values){
+    sum(pmax(market.values, 0))
+  }
+)
+exposure
+
+
+# Using the plyr Package for Data Munging
+# The plyr package is used for splitting, applying, and combining data
+
+# Using ddply()
+
+library(plyr)
+dfx <- data.frame(
+  group = c(rep('A', 8), 
+            rep('B', 15),
+            rep('C', 6)),
+  sex = sample(c("M", "F"),
+               size = 29,
+               replace = TRUE),
+  age = runif(n = 29,
+              min = 18,
+              max = 54)
+)
+
+
+ddply(dfx, .(group, sex), summarize,
+      mean = round(mean(age), 2),
+      sd = round(sd(age), 2))
