@@ -99,3 +99,51 @@ homelessUpTo2009 <- read_sav("G:/All/R programming/Basic R (Lab)/homelessUpto200
 # Read from Stata
 library(foreign)
 mydata <- read.dta("c:/mydata.dta")
+
+
+names(Homeless2010_2015)
+names(homelessUpTo2009)
+# It seems that these are two similar datasets that we would like to merge into one new file.
+# However, the first name of the first variable of the second file is not the same as the one in the first file (Publisher Label vs PublisherLabel). We want to change the name `Publisher Label` to `PublisherLabel`.
+names(Homeless2010_2015)[1] <- "PublisherLabel"
+names(Homeless2010_2015)
+
+# Merge data
+# add some new lines on the same variables. Use the command `rbind`
+dataAll <- rbind(homelessUpTo2009, Homeless2010_2015)
+
+# Dimension check
+dim(homelessUpTo2009)
+dim(Homeless2010_2015)
+dim(dataAll)
+
+# merge data by adding new column using 'cbind' or 'merge' depending on the case
+help("data.frame")
+authors <- data.frame(
+  surname = I(c("Tukey", "Venables", "Tierney", "Ripley", "McNeil")),
+  nationality = c("US", "Australia", "US", "UK", "Australia"),
+  deceased = c("yes", rep("no", 4))
+)
+
+books <- data.frame(
+  name = I(c("Tukey", "Venables", "Tierney",
+             "Ripley", "Ripley", "McNeil", "R Core")),
+  title = c("Exploratory Data Analysis",
+            "Modern Applied Statistics ...",
+            "LISP-STAT",
+            "Spatial Statistics", "Stochastic Simulation",
+            "Interactive Data Analysis",
+            "An Introduction to R"),
+  other.author = c(NA, "Ripley", NA, NA, NA, NA,
+                   "Venables & Smith"))
+
+m1 <- merge(authors, books, by.x="surname", by.y="name")
+m2 <- merge(books, authors, by.x="name", by.y="surname")
+m1
+
+# Save data
+write.table(dataAll,"G:/All/R programming/Basic R (Lab)/dataAll.txt",row.names=FALSE)
+# Read
+dataAll <- read.table("G:/All/R programming/Basic R (Lab)/dataAll.txt",header=TRUE)
+dataAll
+
