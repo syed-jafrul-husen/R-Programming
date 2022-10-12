@@ -68,3 +68,11 @@ help(prop)
 ??prop
 
 # combine these results into a single table or dataframe of some kind
+freq <- as.vector(table(sample(coin, 100, replace=TRUE)))
+prop <- prop.table(freq)
+freq
+prop
+flips_df <- data.frame('Face'=coin,
+                       'Frequency' = freq,
+                       'Proportion' = prop)
+flips_df
