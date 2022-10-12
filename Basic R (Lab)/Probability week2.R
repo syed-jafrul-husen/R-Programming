@@ -48,7 +48,23 @@ dst_S_D <- with(dataset, table(symptom, disease))
 dst_S_D
 
 # So the pr(D|S="yes") = 
+# p(D|S) means what is the probability of D given S
+# Math: p(D|S) = p(D n S)/ p(S)
 probD_Sy <- dst_S_D[2, 2] / sum(dst_S_D[2, ])
 probD_Sy
 
 # How about pr(S|D="yes") = ?
+probS_D <- dst_S_D[2,2] / sum(dst_S_D[,2])
+probS_D
+
+
+coin <- c("Heads", "Tails")
+sample(coin, 10, replace=TRUE)
+
+table(sample(coin, 1000, replace=TRUE))
+
+prop.table(table(sample(coin, 1000, replace=TRUE)))
+help(prop)
+??prop
+
+# combine these results into a single table or dataframe of some kind
