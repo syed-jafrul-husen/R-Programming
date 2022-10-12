@@ -147,3 +147,33 @@ write.table(dataAll,"G:/All/R programming/Basic R (Lab)/dataAll.txt",row.names=F
 dataAll <- read.table("G:/All/R programming/Basic R (Lab)/dataAll.txt",header=TRUE)
 dataAll
 
+# Some data analysis
+nrow(dataAll)
+# See the distribution of ethnicity
+table(dataAll$Ethnicity)
+# To avoid typing the name of the dataset again and again, we are going to attach the data to the workspace. Use the following command:
+attach(dataAll)
+# now just it can type
+table(Ethnicity)
+
+#To get rates we are going to use the command `prop.table`
+prop.table(table(Ethnicity))
+
+# Get percentage
+round(100*prop.table(table(Ethnicity)), 2)
+
+# Answer the following guestions:
+#  - What percentage of UK nationals have applied? 
+#  - What are the most important reasons for application?
+#  - What where the needs?
+#  - What was the final decision?
+#  - What was the average age of the applicant?
+  
+  ### Solution
+  
+
+round( 100*prop.table(table(Nationality)),2)
+round( 100*prop.table(table(Reason)),2)
+round( 100*prop.table(table(Need)),2)
+round( 100*prop.table(table(Decision)),2)
+summary(Age)
