@@ -1,5 +1,54 @@
 # 1. Set Operations
 a <- c(0,1,2,3,4,5) ##c() is a generic function which combines its arguments.
 c(4,5,6,7,8,9) -> b
-print("Hello World")
 print(a)
+b
+
+union(a,b)
+
+intersect(a,b)
+
+a_b = setdiff(a,b) #All data of a which are not exist in b vector or data frame
+b_a = setdiff(b,a) #All data of b which are not exist in a vector or data frame
+a_b
+b_a
+
+setequal(a,b) # perform vector a is equal to a vector or not
+
+a==b
+
+x <- c(sort(sample(1:20, 20)), NA)
+x
+(y<-c(sort(sample(3:23, 7)), NA))
+union(x,y)
+intersect(x,y)
+setdiff(x,y)
+setdiff(y,x)
+setequal(x,y)
+help(sample)
+
+
+# 2. Conditional Probability
+# Suppose that a certain disease (D) has a prevalence of 20/100
+# Also suppose that a certain symptom (S) has a prevalence 
+# (in the general population = people with that disease D and
+# people without that disease [probability with other diseases,
+# but it's not important]) of 30/100
+
+# How to get the conditional probability P(S|D)=30%?
+symptom = sample(c("yes", "no"), 100000, prob=c(0.2,0.8), rep=TRUE)
+disease = sample(c("yes", "no"), 100000, prob=c(0.3,0.7), rep=TRUE)
+
+head(symptom)
+head(disease)
+
+dataset <- data.frame(symptom, disease)
+help(with)
+dst_S_D <- with(dataset, table(symptom, disease))
+dst_S_D
+
+# So the pr(D|S="yes") = 
+probD_Sy <- dst_S_D[2, 2] / sum(dst_S_D[2, ])
+probD_Sy
+
+# How about pr(S|D="yes") = ?
