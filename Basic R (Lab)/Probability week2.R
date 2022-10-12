@@ -76,3 +76,26 @@ flips_df <- data.frame('Face'=coin,
                        'Frequency' = freq,
                        'Proportion' = prop)
 flips_df
+
+
+
+# 4. Deal with data
+
+# Read From Excel
+install.packages('readxl')
+library(readxl)
+Homeless2010_2015 <- read_excel("G:/All/R programming/Basic R (Lab)/Homeless2010-2015.xlsx")
+View(Homeless2010_2015)
+
+# Read From SPSS
+installed.packages('haven')
+library(haven)
+homelessUpTo2009 <- read_sav("G:/All/R programming/Basic R (Lab)/homelessUpto2009.sav")
+
+# Read from SAS
+# library(Hmisc)
+# mydata <- sasxport.get("c:/mydata.xpt")
+
+# Read from Stata
+library(foreign)
+mydata <- read.dta("c:/mydata.dta")
