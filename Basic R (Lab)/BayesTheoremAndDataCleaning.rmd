@@ -31,6 +31,60 @@ summary(video)
 ```
 
 ```{r}
+video <- read.table(url, header = TRUE)
+```
 
+```{r}
+dim(video)
+```
+```{r}
+head(video)
+```
+```{r}
+tail(video)
+```
+```{r}
+names(video)
+```
+```{r}
+summary(video)
+```
+# Exploratory Data Analysis
+```{r}
+# Data structure
+str(video)
+```
+```{r}
+# change the attribute level
+video$like <- factor(video$like)
+levels(video$like)
+```
+```{r}
+levels(video$like) <- c('Never played', 
+                        'Very much', 
+                        'Somewhat', 
+                        'Not really', 
+                        'Not at all',
+                        'No response')
+levels(video$like)
+```
+
+```{r}
+video$where <- factor(video$where)
+levels(video$where)
+levels(video$where) <- c('Arcade', 
+                         'Console', 
+                         'Personal computer', 
+                         'Computer and console', 
+                         'Arcade and home(console or computer)', 
+                         'Arcade and home (both console and computer)',
+                         'No response')
+levels(video$where)
+```
+```{r}
+str(video)
+```
+```{r}
+head(video)
 ```
 
